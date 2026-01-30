@@ -4,6 +4,6 @@ test_that("save works", {
   names(df) <- "abc,def"
 
   df |>
-    save_df("test.fdfs") |>
+    save_df("test.sdfs") |>
     expect_error()
 })

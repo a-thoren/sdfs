@@ -40,7 +40,8 @@ test_that("load works", {
 
   expect_true(file.exists(f))
 
-  df_2 <- load(f)
+  df_2 <- load(f) |>
+    dplyr::collect()
 
   expect_equal(
     df_2,
@@ -51,5 +52,17 @@ test_that("load works", {
       wow = c("abc", "hhhh", "öööööööö", NA, "1")
     )
   )
+
+  load(f) |>
+    dplyr::select("x", "abc") |>
+    dplyr::collect() |>
+    expect_equal(
+      dplyr::select(df, "x", "abc") |>
+        tibble::as_tibble()
+    )
+
+  load(f) |>
+    dplyr::collect() |>
+    expect_equal(tibble::as_tibble(df))
 
 })

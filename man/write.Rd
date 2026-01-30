@@ -19,6 +19,8 @@ write_column(x, file_counter)
 \item{file_counter}{the file counter, contains a file connection and a
 counter of how many raws have been written to it}
 
+\item{version}{version, currently not used}
+
 \item{add}{the amount to increase the counter by}
 
 \item{x}{object to write, should be a raw}

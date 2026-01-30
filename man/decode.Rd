@@ -27,6 +27,8 @@ decode_character_simple(x, ...)
 \item{type}{type of encoded values}
 
 \item{n}{number of values in `x`, only used when decoding characters}
+
+\item{...}{ignored}
 }
 \value{
 decoded values

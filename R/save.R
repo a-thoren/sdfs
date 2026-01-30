@@ -1,7 +1,8 @@
 #' @describeIn write writes the header
+#' @param version version, currently not used
 write_header <- function(file_counter, version = 1) {
 
-  header <- c(charToRaw("fdfs"), as.raw(version))
+  header <- c(charToRaw("sdfs"), as.raw(version))
 
   writeBin(
     header,

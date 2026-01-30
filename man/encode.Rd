@@ -13,9 +13,9 @@ encode(x)
 
 encode_logical(x)
 
-encode_numeric(x, ...)
+encode_numeric(x)
 
-encode_integer(x, ...)
+encode_integer(x)
 
 encode_character(x)
 

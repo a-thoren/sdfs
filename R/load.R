@@ -4,14 +4,52 @@
 #'
 #' @returns data.frame
 load <- function(file_name) {
-  f <- withr::local_connection(file(file_name, "rb"))
+  f <- file(file_name, "rb")
 
-  index <- read_index(f)
+  structure(
+    list(
+      connection = f,
+      index = read_index(f),
+      file_name = file_name
+    ),
+    class = "sdfs"
+  )
+}
 
-  index |>
-    purrr::pluck("names") |>
-    read_columns(f = f, index = index) |>
-    dplyr::bind_cols()
+#' @export
+#' @importFrom dplyr select
+select.sdfs <- function(.data, ...) {
+  # Determine current column names
+  cols <- .data$columns
+  if (is.null(cols)) {
+    cols <- .data$index$names
+  }
+
+  # Let tidyselect resolve the selection
+  selected <- tidyselect::vars_select(cols, ...)
+
+  # Store the selected column names
+  .data$columns <- selected
+
+  .data
+}
+
+#' @export
+#' @importFrom dplyr collect
+collect.sdfs <- function(.data) {
+
+  res <- read_columns(
+    f = .data$connection,
+    index = .data$index,
+    columns = purrr::pluck(
+      .data,
+      "columns",
+      .default = purrr::pluck(.data, "index", "names")
+      )
+  )
+
+  close(.data$connection)
+  res
 }
 
 

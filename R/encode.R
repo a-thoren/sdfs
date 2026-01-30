@@ -29,13 +29,13 @@ encode_logical <- function(x) {
 }
 
 #' @describeIn encode encodes numerics
-encode_numeric <- function(x, ...) {
+encode_numeric <- function(x) {
   checkmate::assert_numeric(x)
   numToBits(x)
 }
 
 #' @describeIn encode encodes integers
-encode_integer <- function(x, ...) {
+encode_integer <- function(x) {
   checkmate::assert_integer(x)
   intToBits(x)
 }
@@ -85,6 +85,7 @@ decode <- function(x, type, n) {
 }
 
 #' @describeIn decode decodes logicals
+#' @param ... ignored
 decode_logical <- function(x, ...) {
   checkmate::assert_raw(x)
 

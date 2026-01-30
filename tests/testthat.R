@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(fdfs)
+library(sdfs)
 
-test_check("fdfs")
+test_check("sdfs")

@@ -1,4 +1,4 @@
-Package: fdfs
+Package: sdfs
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
@@ -11,7 +11,7 @@ Authors@R: c(
   )
 Description: More about what it does (maybe more than one line).
     Continuation lines should be indented.
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
@@ -20,7 +20,8 @@ Imports:
   dplyr,
   purrr,
   stringr,
-  withr
+  withr,
+  tidyselect
 Suggests: 
     testthat (>= 3.0.0),
     tibble
