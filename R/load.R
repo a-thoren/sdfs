@@ -33,19 +33,19 @@ select.sdfs <- function(.data, ...) {
 
 #' @export
 #' @importFrom dplyr collect
-collect.sdfs <- function(.x, ...) {
+collect.sdfs <- function(x, ...) {
 
   res <- read_columns(
-    f = .x$connection,
-    index = .x$index,
+    f = x$connection,
+    index = x$index,
     columns = purrr::pluck(
-      .x,
+      x,
       "columns",
-      .default = purrr::pluck(.x, "index", "names")
+      .default = purrr::pluck(x, "index", "names")
     )
   )
 
-  close(.x$connection)
+  close(x$connection)
   res
 }
 
