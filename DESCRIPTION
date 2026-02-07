@@ -1,16 +1,15 @@
 Package: sdfs
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Simple data.frame storage
 Version: 0.1.1
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Alexander", "Thorén",
+      email = "alethoren@gmail.com",
       role = c("aut", "cre")
     )
   )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
+Description: Simple data.frame storage with columnar based access.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
