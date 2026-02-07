@@ -36,16 +36,16 @@ select.sdfs <- function(.data, ...) {
 collect.sdfs <- function(.x, ...) {
 
   res <- read_columns(
-    f = .data$connection,
-    index = .data$index,
+    f = .x$connection,
+    index = .x$index,
     columns = purrr::pluck(
-      .data,
+      .x,
       "columns",
-      .default = purrr::pluck(.data, "index", "names")
+      .default = purrr::pluck(.x, "index", "names")
     )
   )
 
-  close(.data$connection)
+  close(.x$connection)
   res
 }
 
