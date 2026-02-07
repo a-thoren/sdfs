@@ -121,13 +121,15 @@ save_df <- function(df, file_name) {
 get_types <- function(df) {
   purrr::map(
     df,
-    \(x) switch(
-      class(x),
-      "integer" = 1,
-      "numeric" = 2,
-      "logical" = 3,
-      "character" = 4
-    )
+    \(x) {
+      switch(
+        class(x),
+        "integer" = 1,
+        "numeric" = 2,
+        "logical" = 3,
+        "character" = 4
+      )
+    }
   ) |>
     unlist()
 }

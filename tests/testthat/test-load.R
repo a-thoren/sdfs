@@ -65,4 +65,15 @@ test_that("load works", {
     dplyr::collect() |>
     expect_equal(tibble::as_tibble(df))
 
+  load(f) |>
+    dplyr::rename(y = "x") |>
+    dplyr::select("y", dplyr::any_of("x")) |>
+    dplyr::collect() |>
+    expect_equal(
+      df |>
+        dplyr::select("x") |>
+        dplyr::rename(y = "x") |>
+        tibble::as_tibble()
+    )
+
 })

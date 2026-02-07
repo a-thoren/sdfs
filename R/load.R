@@ -19,16 +19,13 @@ load <- function(file_name) {
 #' @export
 #' @importFrom dplyr select
 select.sdfs <- function(.data, ...) {
-  # Determine current column names
   cols <- .data$columns
   if (is.null(cols)) {
     cols <- .data$index$names
   }
 
-  # Let tidyselect resolve the selection
   selected <- tidyselect::vars_select(cols, ...)
 
-  # Store the selected column names
   .data$columns <- selected
 
   .data
@@ -45,11 +42,23 @@ collect.sdfs <- function(.data) {
       .data,
       "columns",
       .default = purrr::pluck(.data, "index", "names")
-      )
+    )
   )
 
   close(.data$connection)
   res
+}
+
+#' @export
+#' @importFrom dplyr rename
+rename.sdfs <- function(.data, ...) {
+  renamed <- tidyselect::vars_rename(
+    .vars = purrr::pluck(.data, "index", "names"),
+    ...
+  )
+
+  purrr::assign_in(.data, c("index", "names"), names(renamed))
+
 }
 
 
@@ -129,5 +138,4 @@ read_column <- function(f, start, len, type, n) {
   seek(f, where = start)
   readBin(f, what = "raw", n = len) |>
     decode(type, n)
-
 }
