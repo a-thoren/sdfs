@@ -33,7 +33,7 @@ select.sdfs <- function(.data, ...) {
 
 #' @export
 #' @importFrom dplyr collect
-collect.sdfs <- function(.data, ...) {
+collect.sdfs <- function(.x, ...) {
 
   res <- read_columns(
     f = .data$connection,
